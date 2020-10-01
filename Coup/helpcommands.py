@@ -1,0 +1,56 @@
+import discord
+
+async def helpcommand(client,message):
+    messagestring = "Commands:\n"
+    messagestring += "!coup - starts the game\n"
+    messagestring += "!help - gives a list of commands\n"
+    messagestring += "!cards - gives a list of roles\n"
+    messagestring += "!rules - gives a list of rules\n"
+    messagestring += "!join - join the game during login phase\n"
+    messagestring += "!quit - quit the game during login phase\n"
+    messagestring += "!start - start playing with the current playerlist, or start with the current card list\n"
+    messagestring += "!add - add cards to the game\n"
+    messagestring += "!remove - remove cards from the game\n"
+    messagestring += "To challenge a claim, type \"challenge\".\n"
+    messagestring += "To block Foreign Aid with Duke or assassination with Contessa, type \"block\".\n"
+    messagestring += "To block stealing with Captain, Ambassador, or Inquisitor, type \"block captain\", \"block ambassador\", or \"block inquisitor\" respectively.\n"
+    messagestring += "To pass and allow an action to be performed on you instead of blocking or challenging, type \"pass\".\n"
+    messagestring += "To take Income or Foreign Aid, type \"income\" or \"foreignaid\" respectively.\n"
+    messagestring += "To launch a coup on @example, type \"coup @example\".\n"
+    messagestring += "To take Tax using the Duke, type \"duke\".\n"
+    messagestring += "To steal from @example using the Captain, type \"captain @example\".\n"
+    messagestring += "To assassinate @example, type \"assassin @example\".\n"
+    messagestring += "To exchange cards with the centre cards using Ambassador, type \"ambassador\".\n"
+    messagestring += "When exchanging cards or choosing which card to discard, type its name with capitalisation in the DM.\n"
+    await message.channel.send(messagestring)
+
+async def helpcards(client,message):
+    messagestring = "Cards:\n"
+    messagestring += "Duke: May take 3 coins on your turn, and can block Foreign Aid on anyone else's turn.\n"
+    messagestring += "Captain: May steal 2 coins from another player on your turn, and can block another player's attempt to steal from you.\n"
+    messagestring += "Assassin: May pay 3 coins to assassinate another player (making them lose influence) on your turn (money is lost even if the assassination fails).\n"
+    messagestring += "Contessa: Can block another player's attempt to assassinate you.\n"
+    messagestring += "Ambassador: May take 2 random cards from the centre and choose which cards to keep (putting two back) on your turn, and can block another player's attempt to steal from you.\n"
+    await message.channel.send(messagestring)
+
+async def rules(client,message):
+    messagestring = "Rules:\n"
+    messagestring += "At the start of the game, each player receives two random cards, with all others in a pile in the centre.\n"
+    messagestring += "Each player also receives two credits at the start of the game.\n"
+    messagestring += "On your turn, you must take an  action.\n"
+    messagestring += "You can take Income to gain 1 credit.\n"
+    messagestring += "You can take Foreign Aid to gain 2 credits, but this can be blocked by another player claiming Duke.\n"
+    messagestring += "If you have 7 or more credits, you can spend 7 to launch a coup on another player.\n"
+    messagestring += "The target of a coup will lose influence, which means that they lose a card of their choice, which they reveal.\n"
+    messagestring += "Once you lose both your cards, you are out of the game.\n"
+    messagestring += "Alternatively, you may use a card's action, described in !cards.\n"
+    messagestring += "You do not need to have the card in your hand to use its action.\n"
+    messagestring += "If another player suspects that you do not have the card corresponding to your action, they may challenge you.\n"
+    messagestring += "If you do not in fact have that card, you lose influence and your action fails (but you do not regain money spent, if any).\n"
+    messagestring += "If you have that card, you must reveal it, shuffle it into the centre cards, and draw a replacement.\n"
+    messagestring += "The person who erroneously challenged you loses influence, and your action goes through.\n"
+    messagestring += "Your action cannot be blocked after it is challenged.\n"
+    messagestring += "For instance, if the target of an assassination wrongly challenges, they cannot then block with the Contessa and automatically lose influence twice (once from the challenge, once from the assassination) and thus lose immediately.\n"
+    messagestring += "Anyone else can challenge an action, but unless a player is using the Duke's action to block Foreign Aid only the target may block an action.\n"
+    messagestring += "When there is only one player left, that player wins!\n"
+    await message.channel.send(messagestring)

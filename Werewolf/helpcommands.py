@@ -1,0 +1,61 @@
+import discord
+
+async def helpcommand(client,message):
+    messagestring = "Commands:\n"
+    messagestring += "!werewolf - starts the game\n"
+    messagestring += "!help - gives a list of commands\n"
+    messagestring += "!roles - gives a list of roles\n"
+    messagestring += "!rules - gives a list of rules\n"
+    messagestring += "!join - join the game during login phase\n"
+    messagestring += "!quit - quit the game during login phase\n"
+    messagestring += "!start - start playing with the current playerlist, or start with the current role list\n"
+    messagestring += "!add - add roles to the game\n"
+    messagestring += "!remove - remove roles from the game\n"
+    messagestring += "!shame - get a list of players who have not performed their night action\n"
+    messagestring += "!dayskip - request dayskip during the day (if everyone does this, the day ends early)\n"
+    messagestring += "To select a player to target, type their number.\n"
+    messagestring += "To select a centre card, type its number (1, 2, or 3).\n"
+    messagestring += "To pass on your turn, type \"pass\".\n"
+    messagestring += "If you need to make two choices, type the numbers separated by a space.\n"
+    await message.channel.send(messagestring)
+
+async def helproles(client,message):
+    messagestring = "Roles:\n"
+    messagestring += "Doppelganger: Must choose another player's card. They then become that card. If they become a Seer, Robber, Troublemaker, or Drunk, they perform their new action immediately.\n"
+    messagestring += "Werewolf: Can see other Werewolves, and aim to ensure no Werewolves die. If there is only one Werewolf, they may look at one centre card.\n"
+    messagestring += "Minion: Sees who the Werewolves are and wins alongside them, but does not count as a Werewolf (unless there are no Werewolves present at the end of the game, in which case they become a Werewolf).\n"
+    messagestring += "Apprentice Tanner: Sees who the Tanner (and Doppel-Tanner) is and wins if either of them dies, but does not count as a Tanner (unless there are no Tanners present at the end of the game, in which case they become a Tanner).\n"
+    messagestring += "Mason: Sees who the other Masons are and wins with the Villager team.\n"
+    await message.channel.send(messagestring)
+    messagestring = "Seer: Can look at one other player's card or two centre cards, and wins with the Villager team.\n"
+    messagestring += "Apprentice Seer: Can look at one centre card, and wins with the Villager team.\n"
+    messagestring += "Robber: Can exchange one other player's card for their own and look at their new card, and wins with the Villager team.\n"
+    messagestring += "Troublemaker: Can exchange two other players' cards without looking at them, and wins with the Villager team.\n"
+    messagestring += "Village Idiot: Can shift all players' roles up or down by one without looking at them, and wins with the Villager team.\n"
+    messagestring += "Drunk: Must exchange their own card with one of the centre cards without looking, and wins with the Villager team.\n"
+    messagestring += "Insomniac: Looks at their card at the end of the night, after all other night actions, and wins with the Villager team.\n"
+    messagestring += "Squire: Sees who the Werewolves are and what their cards currently are at the end of the night, after all other night actions, and wins alongside them, but does not count as a Werewolf (unless there are no Werewolves present at the end of the game, in which case they become a Werewolf).\n"
+    messagestring += "Villager: No special abilities. Wins with the Villager team.\n"
+    messagestring += "Hunter: If they are killed at the end of the vote, the person they voted for also dies. Wins with the Villager team.\n"
+    messagestring += "Tanner: Wins if and only if they are killed, in which case everyone else (except Apprentice Tanners and possibly other Tanners) loses.\n"
+    await message.channel.send(messagestring)
+
+async def rules(client,message):
+    messagestring = "Rules:\n"
+    messagestring += "At the start of the game, each player receives a card determining their role.\n"
+    messagestring += "There are three additional cards in the centre.\n"
+    messagestring += "During the Night phase, players may perform various actions, some of which may affect some of the cards.\n"
+    messagestring += "(Not every player wakes up during the night to perform an action)\n"
+    messagestring += "The action performed is determined solely by your initial card, regardless of whether it has changed.\n"
+    messagestring += "When you wake up, you may not look at what your card currently is (unless you started as the Insomniac role).\n"
+    messagestring += "During the Day phase, people discuss and decide who they want to kill.\n"
+    messagestring += "At the end of the day, all players must vote for another player.\n"
+    messagestring += "The players with the most votes (provided they received two or more) die.\n"
+    messagestring += "(If a Hunter dies, the person they voted for also dies regardless of how many votes they got.)\n"
+    messagestring += "The Villagers win if at least one Werewolf is killed, and the Werewolves win if no Werewolves are killed.\n"
+    messagestring += "If the Tanner is killed, they win but everyone else (except Apprentice Tanners and possibly other Tanners) automatically loses.\n"
+    messagestring += "If there are no Werewolves (including Minions who become Werewolves) at the end, the Villagers win if and only if they do not kill anyone.\n"
+    messagestring += "(Your win condition depends solely on your final role, regardless of your initial role.)\n"
+    messagestring += "The Doppelganger's win condition depends on who the original Doppelganger copied, even if it was a different person.\n"
+    messagestring += "However, if the Doppelganger did not copy anyone (due to it being in the centre) then it is part of the Villager team.\n"
+    await message.channel.send(messagestring)

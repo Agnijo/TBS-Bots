@@ -1,0 +1,76 @@
+import discord
+
+async def helpcommand(client,message):
+    messagestring = "Commands:\n"
+    messagestring += "!6nimmt - starts the game\n"
+    messagestring += "!help - gives a list of commands\n"
+    messagestring += "!help bot - gives explanation of playing with bot\n"
+    messagestring += "!help newcards - gives explanation of new cards\n"
+    messagestring += "!rules - gives a list of rules\n"
+    messagestring += "!elo - gives your own elo\n"
+    messagestring += "!elo @mention - gives @mention's elo\n"
+    messagestring += "(These will not return an elo if you have never played)\n"
+    messagestring += "!join - join the game during login phase\n"
+    messagestring += "!quit - quit the game during login phase\n"
+    messagestring += "!start - start playing with the current playerlist\n"
+    messagestring += "!start bot - play with the bot as a player\n"
+    messagestring += "!start newcards - play with the new cards\n"
+    messagestring += "!start newcards+ - play with guaranteed new cards\n"
+    messagestring += "!start multinewcards - play with multiple of each new card\n"
+    messagestring += "!start multinewcards+ - play with multiple of each new card guaranteed\n"
+    messagestring += "To play a card, simply DM with the card you wish to play.\n"
+    messagestring += "Likewise, when choosing a row, simply type the number of the row you wish to take.\n"
+    await message.channel.send(messagestring)
+
+async def helpnewcards(client,message):
+    messagestring = "New cards:\n"
+    messagestring += "The new cards are Barricade, Beef Up, First Choice, and Ranch Salad.\n"
+    messagestring += "The players of Barricade, Beef Up, First Choice, and Ranch Salad may choose which row to use its effect on. These cards are not added to the end of the row.\n"
+    messagestring += "Barricade prevents anyone from taking that row, placing any card in that row, or adding any other effect to that row and lasts for the rest of the turn.\n"
+    messagestring += "Beef Up doubles the number of points lost when taking a row, and lasts until the row is taken.\n"
+    messagestring += "First Choice means that when a card is played that is lower than any of the rightmost cards, the player cannot choose the row and must take the First Choice row.\n"
+    messagestring += "Ranch Salad makes the number of beef heads in a row negative, so the next player to take the row gains points rather than losing them. This lasts until the row is taken.\n"
+    messagestring += "Starting the game with newcards+ makes all new cards guaranteed to appear.\n"
+    messagestring += "Starting the game with multinewcards (or multinewcards+) makes multiple new cards.\n"
+    messagestring += "There will be 3 Barricades, 4 Beefs Up, and 4 Ranch Salads, but only one First Choice.\n"
+    messagestring += "Also, using Beef Up or Ranch Salad multiple times on the same row will have no additional effect compared to using it once.\n"
+    await message.channel.send(messagestring)
+
+async def helpbot(client,message):
+    messagestring = "Bot:\n"
+    messagestring += "Type !start bot to play with the bot. (This can be combined with newcards).\n"
+    messagestring += "The bot will be treated like another player, and can only see its own cards and what has previously been played.\n"
+    messagestring += "When choosing your card, wait for the bot to choose first.\n"
+    messagestring += "You cannot add the bot if you are already at the maximum number of players.\n"
+    await message.channel.send(messagestring)
+    
+async def rules(client,message):
+    messagestring = "Rules:\n"
+    messagestring += "Each player starts with 66 points.\n"
+    messagestring += "There are 104 cards in the deck, numbered 1 to 104.\n"
+    messagestring += "If playing with new cards, there are three special cards: Beef Up, First Choice, and Ranch Salad.\n"
+    messagestring += "Each card has a certain number of beef heads.\n"
+    messagestring += "Special cards have no beef heads.\n"
+    messagestring += "Multiples of 10 have 3 beef heads.\n"
+    messagestring += "Odd multiples of 5 (except 55) have 2 beef heads.\n"
+    messagestring += "Multiples of 11 (except 55) have 5 beef heads.\n"
+    messagestring += "55 has 7 beef heads.\n"
+    messagestring += "All other cards have 1 beef head.\n"
+    await message.channel.send(messagestring)
+    messagestring = "Each player starts with a hand of 10 cards.\n"
+    messagestring += "Initially, each of the four rows has only one card randomly chosen from the deck.\n"
+    messagestring += "(This card is never a special card.)\n"
+    messagestring += "Each turn, players must simultaneously choose their card.\n"
+    messagestring += "After the cards are chosen, they are played in ascending order.\n"
+    messagestring += "Special cards are played first in alphabetical order.\n"
+    messagestring += "Each card is played at the end of the row whose rightmost card is largest, but still less than the card's number.\n"
+    messagestring += "If a card would be the sixth card in a row, the player playing that card takes all the cards in the row and their card becomes the first.\n"
+    messagestring += "(These cards do not get added to their hand.)\n"
+    messagestring += "This player loses points equivalent to the total number of beef heads they took.\n"
+    messagestring += "If a player plays a card lower than any of the rightmost cards in the rows, they can choose a row (except if a row has First Choice, in which case they automatically pick that row).\n"
+    messagestring += "They then take all the cards in that row, losing points equivalent to the total number of beef heads they took.\n"
+    messagestring += "Their card then becomes the first card in that row.\n"
+    messagestring += "A round ends when everyone has played all 10 of their cards.\n"
+    messagestring += "If everyone has a positive number of points, another round is played.\n"
+    messagestring += "Otherwise, the game ends and the person with the most points is the winner.\n"
+    await message.channel.send(messagestring)
